@@ -1,0 +1,18 @@
+<!-- Navbar Start -->
+<div class="container-fluid nav-bar bg-transparent">
+  <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
+    <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
+      <h1 class="m-0 text-primary">CBC</h1>
+    </a>
+    <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto">
+        <%= link_to "Inicio", root_path, class: "nav-item nav-link #{"active" if current_page?(root_path)}" %>
+        <%= link_to "Nosotros", nosotros_path, class: "nav-item nav-link #{"active" if current_page?(nosotros_path)}" %>
+        <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-item nav-link #{"active" if current_page?(new_user_session_path)}"%>
+    </div>
+  </nav>
+</div>
+<!-- Navbar End -->

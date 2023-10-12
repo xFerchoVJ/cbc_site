@@ -1,0 +1,37 @@
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+        <h1 class="mb-3">Inicia Sesión</h1>
+    </div>
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="col-md-6">
+        <div class="wow fadeInUp" data-wow-delay="0.5s">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-floating mb-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            <%= f.label :email %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            <%= f.label :password %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="mb-3">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <div class="mb-3">
+            <%= f.submit "Iniciar Sesión", class: "btn btn-primary w-100 py-3" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

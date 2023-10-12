@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sitio - <%= @page_title %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag asset_path('favicon/cbc_image.jpg') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+    <%= yield %>
+  </body>
+</html>
