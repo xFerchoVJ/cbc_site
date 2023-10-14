@@ -1,5 +1,14 @@
 <div class="container-xxl py-5">
   <div class="container">
+    <% flash.each do |type, msg| %>
+      <% if type == 'notice' %>
+        <div class="alert alert-success" role="alert">
+      <% else %>
+        <div class="alert alert-danger" role="alert">
+      <%end%>
+          <%= msg %>
+        </div>
+    <% end %>
     <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
         <h1 class="mb-3">Inicia Sesión</h1>
     </div>

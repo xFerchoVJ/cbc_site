@@ -1,0 +1,56 @@
+<%= form_with(model: property, url: admin_properties_path) do |form| %>
+  <% if property.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibió que esta propiedad se guardara:</h2>
+      <ul>
+        <% property.errors.each do |error| %>
+          <li><%= error.options[:message] %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row p-4">
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :name, "Titulo de la Propiedad", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :price, "Precio de la propiedad", class: "form-label" %>
+      <%= form.number_field :price, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :direction, "Dirección de la Propiedad", class: "form-label" %>
+      <%= form.text_field :direction, class: "form-control" %>
+    </div>
+
+
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :square_meter, "Metros Cuadrados de la Propiedad",class: "form-label" %>
+      <%= form.number_field :square_meter, class: "form-control" %>
+    </div>
+
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :beds, "Cantidad de Cuartos de la Propiedad", class: "form-label" %>
+      <%= form.number_field :beds, class: "form-control" %>
+    </div>
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :bathrooms, "Cantidad de baños de la Propiedad", class: "form-label" %>
+      <%= form.number_field :bathrooms, class: "form-control" %>
+    </div>
+
+    <div class="mb-3 col-12 col-md-6">
+      <%= form.label :property_type, "Tipo de la Propiedad", class: "form-label" %>
+      <%= form.select :property_type, Property.property_types.keys.map{ |key| [key.humanize, key]}, {}, class: "form-select" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :images, "Imagenes de la Propiedad", class: "form-label" %>
+      <%= form.file_field :images, multiple: true , class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.submit "#{property.new_record? ? "Crear Propiedad" : "Editar Propiedad"}", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

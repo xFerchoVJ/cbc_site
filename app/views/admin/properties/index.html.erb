@@ -1,0 +1,12 @@
+<h1>Properties</h1>
+
+<div id="properties">
+  <% @properties.each do |property| %>
+    <%= render property %>
+    <p>
+      <%= link_to "Show this property", admin_property_path(property) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New property", new_admin_property_path %>
