@@ -1,9 +1,6 @@
 class Admin::DashboardController < ApplicationController
   layout 'admin'
   before_action :authenticated_admin!
-  def index
-    @page_title = "CBC Administrador"
-  end
 	
   private
   def authenticated_admin!

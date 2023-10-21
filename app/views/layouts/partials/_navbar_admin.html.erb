@@ -1,24 +1,44 @@
-<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
-  <div class="container">
-    <%= link_to "CBC - Administrador", admin_dashboard_path, class: "navbar-brand"%>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to "Inicio", admin_dashboard_path, class: "nav-link #{"active" if current_page?(admin_dashboard_path)}"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Ver Propiedades", admin_properties_path, class: "nav-link #{"active" if current_page?(admin_properties_path)}"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Agregar Propiedades", new_admin_property_path, class: "nav-link #{"active" if current_page?(new_admin_property_path)}"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Cerrar Sesión", destroy_user_session_path, class: "nav-link", data: { turbo_method: :delete } %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<header class="header shadow" id="header">
+  <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+  <div class="header_img"> <%= current_user.email %> </div>
+</header>
+<div class="l-navbar" id="nav-bar">
+  <nav class="nav">
+    <div> 
+      <%= link_to admin_properties_path, class: "nav_logo" do%>
+        <i class='bx bxs-layer nav_logo-icon'></i> 
+        <span class="nav_logo-name">CBC Administrador</span> 
+      <% end %>
+      <div class="nav_list"> 
+        <%= link_to admin_properties_path, class:"nav_link #{"active" if current_page?(admin_properties_path)}" do %>
+          <i class='bx bxs-building-house nav_icon'></i> 
+          <span class="nav_name">Propiedades</span> 
+        <% end %>
+        <a href="#" class="nav_link"> 
+          <i class='bx bx-user nav_icon'></i>
+          <span class="nav_name">Users</span> 
+        </a> 
+        <a href="#" class="nav_link"> 
+          <i  class='bx bx-message-square-detail nav_icon'></i> 
+          <span class="nav_name">Messages</span> 
+        </a> 
+        <a href="#" class="nav_link"> 
+          <i class='bx bx-bookmark nav_icon'></i> 
+          <span class="nav_name">Bookmark</span> 
+        </a> 
+        <a href="#" class="nav_link"> 
+          <i class='bx bx-folder nav_icon'></i> 
+          <span class="nav_name">Files</span> 
+        </a> 
+        <a href="#" class="nav_link"> 
+          <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
+          <span class="nav_name">Stats</span>
+        </a> 
+      </div>
+    </div> 
+    <%= link_to destroy_user_session_path, class: "nav_link", data: { turbo_method: :delete } do %>
+    <i class='bx bx-power-off nav_icon'></i>
+     <span class="nav_name">Cerrar Sesión</span>
+    <% end %>
+  </nav>
+</div>

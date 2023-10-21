@@ -11,6 +11,7 @@ class Admin::PropertiesController < ApplicationController
 
   # GET /admin/properties/1 or /admin/properties/1.json
   def show
+    @page_title = "CBC Propiedad"
   end
 
   # GET /admin/properties/new
@@ -21,6 +22,7 @@ class Admin::PropertiesController < ApplicationController
 
   # GET /admin/properties/1/edit
   def edit
+    @page_title = "CBC Editar Propiedad"
   end
 
   # POST /admin/properties or /admin/properties.json
@@ -29,7 +31,7 @@ class Admin::PropertiesController < ApplicationController
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to admin_dashboard_path, notice: "Property was successfully created." }
+        format.html { redirect_to admin_properties_path, notice: "La Propiedad fue creada correctamente." }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -42,7 +44,12 @@ class Admin::PropertiesController < ApplicationController
   def update
     respond_to do |format|
       if @property.update(property_params)
-        format.html { redirect_to property_url(@property), notice: "Property was successfully updated." }
+        if params[:property][:image_ids].present?
+          imgs_ids_to_purge = params[:property][:image_ids].map(&:to_i)
+          @property.images.where(id: imgs_ids_to_purge).purge
+        end
+
+        format.html { redirect_to admin_properties_path, notice: "La propiedad fue editada correctamente." }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -69,7 +76,7 @@ class Admin::PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:name, :direction, :price, :square_meter, :beds, :bathrooms, :property_type, images: [])
+      params.require(:property).permit(:name, :direction, :price, :square_meter, :beds, :bathrooms, :property_type, :sale_or_rent, images: [])
     end
 
     def authenticated_admin!

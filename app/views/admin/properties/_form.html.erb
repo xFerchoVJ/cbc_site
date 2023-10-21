@@ -1,4 +1,4 @@
-<%= form_with(model: property, url: admin_properties_path) do |form| %>
+<%= form_with(model: property, url: property.new_record? ? admin_properties_path : admin_property_path(property)) do |form| %>
   <% if property.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(property.errors.count, "error") %> prohibió que esta propiedad se guardara:</h2>
@@ -35,15 +35,42 @@
       <%= form.label :beds, "Cantidad de Cuartos de la Propiedad", class: "form-label" %>
       <%= form.number_field :beds, class: "form-control" %>
     </div>
-    <div class="mb-3 col-12 col-md-6">
+    <div class="mb-3 col-12 col-md-3">
       <%= form.label :bathrooms, "Cantidad de baños de la Propiedad", class: "form-label" %>
       <%= form.number_field :bathrooms, class: "form-control" %>
     </div>
 
-    <div class="mb-3 col-12 col-md-6">
+    <div class="mb-3 col-12 col-md-3">
       <%= form.label :property_type, "Tipo de la Propiedad", class: "form-label" %>
       <%= form.select :property_type, Property.property_types.keys.map{ |key| [key.humanize, key]}, {}, class: "form-select" %>
     </div>
+
+    <div class="mb-3 col-12 col-md-3">
+      <%= form.label :sale_or_rent, "Venta o Renta", class: "form-label" %>
+      <%= form.select :sale_or_rent, options_for_select([["Venta", "venta"], ["Renta", "renta"]], property.sale_or_rent), {}, class: "form-select" %>
+    </div>
+
+    
+    <% if !property.new_record? %>
+       <div class="mb-3">
+        <h4>Imágenes Actuales:</h4>
+        <p class="text-muted">Selecciona si quieres eliminar alguna imagen.</p>
+        <div class="row form-check">
+          <% property.images.each do |image| %>
+            <div class="col-4">
+              <%= image_tag(image, width: 150, height: 100, class: "img-thumbnail current-image") %>
+              <%= check_box_tag 'property[image_ids][]', image.id, false, class: "form-check-input" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% property.images.each do |image| %>
+      <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+    <% end %>
+    
+
 
     <div class="mb-3">
       <%= form.label :images, "Imagenes de la Propiedad", class: "form-label" %>
@@ -52,5 +79,14 @@
     <div class="mb-3">
       <%= form.submit "#{property.new_record? ? "Crear Propiedad" : "Editar Propiedad"}", class: "btn btn-primary" %>
     </div>
+    
+    <div class="d-flex align-items-center justify-content-center gap-2">
+      <% if !property.new_record? %>
+        <%= link_to "Ver Detalles de la Propiedad", admin_property_path(@property), class:"btn btn-primary" %> 
+      <% end %>
+      
+      <%= link_to "Volver a las Propiedades", admin_properties_path, class:"btn btn-primary" %>
+    </div>
   </div>
+  
 <% end %>
