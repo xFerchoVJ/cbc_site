@@ -11,6 +11,7 @@
       <div class="navbar-nav ms-auto">
         <%= link_to "Inicio", root_path, class: "nav-item nav-link #{"active" if current_page?(root_path)}" %>
         <%= link_to "Nosotros", nosotros_path, class: "nav-item nav-link #{"active" if current_page?(nosotros_path)}" %>
+        <%= link_to "Contacto", contacto_path, class: "nav-item nav-link #{"active" if current_page?(contacto_path)}" %>
         <%= link_to "Iniciar Sesión", new_user_session_path, class: "nav-item nav-link #{"active" if current_page?(new_user_session_path)}"%>
     </div>
   </nav>

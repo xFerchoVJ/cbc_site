@@ -1,0 +1,100 @@
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <% if flash %>
+      <% flash.each do |key, value|%>
+        <div data-controller="notice">
+          <div class="alert alert-success d-flex align-items-center" role="alert"  id="notice">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div>
+              <p class="m-0 p-0 fs-4"><%= value  %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+      <h1 class="mb-3">Contáctanos</h1>
+      <p>Si estás interesado en nuestros servicios inmobiliarios, no dudes en contactarnos. Estamos aquí para ayudarte.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="row gy-4">
+          <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+            <div class="bg-light rounded p-3">
+              <div class="d-flex align-items-center bg-white rounded p-3"
+                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="icon me-3" style="width: 45px; height: 45px;">
+                  <i class="fa fa-map-marker-alt text-primary"></i>
+                </div>
+                <span>Avenida honorable Ayuntamiento 605-int 21, Real Bugambilias, 28979 Villa de Álvarez, Col.</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+            <div class="bg-light rounded p-3">
+              <div class="d-flex align-items-center bg-white rounded p-3"
+                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="icon me-3" style="width: 45px; height: 45px;">
+                  <i class="fa fa-envelope-open text-primary"></i>
+                </div>
+                <span>cbc.colima@gmail.com</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+            <div class="bg-light rounded p-3">
+              <div class="d-flex align-items-center bg-white rounded p-3"
+                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                <div class="icon me-3" style="width: 45px; height: 45px;">
+                  <i class="fa fa-phone-alt text-primary"></i>
+                </div>
+                <span>+312 101 6535</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2663.0257281421896!2d-103.73388819103911!3d19.278578045307306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842551a56afbbdeb%3A0x122712951c0b73a7!2sCentral%20Brokers%20Colima!5e0!3m2!1sen!2smx!4v1697915935320!5m2!1sen!2smx" class="w-100 h-100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="col-md-6">
+        <div class="wow fadeInUp" data-wow-delay="0.5s">
+          <p class="mb-4">Por favor, déjanos tus datos y tu mensaje a continuación. Estaremos encantados de responderte lo antes posible.</p>
+          <%= form_with scope: :contact_form, url: mail_contact_path, method: :post do |f|%>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= f.text_field :name, class: "form-control", placeholder: "Tu nombre"%>
+                  <%= f.label :name, "Tu Nombre Completo"%>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= f.email_field :email, class: "form-control", placeholder: "Tu Email"%>
+                  <%= f.label :email, "Tu Correo Electronico"%>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <%= f.text_field :subject, class: "form-control", placeholder: "Asunto"%>
+                  <%= f.label :subject, "Asunto del Mensaje"%>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating">
+                  <%= f.text_area :message, class: "form-control", placeholder: "Mensaje", style: "height: 150px;"%>
+                  <%= f.label :message, "Mensaje"%>
+                </div>
+              </div>
+              <div class="col-12">
+                <%= f.submit "Enviar Mensaje", class: "btn btn-primary w-100 py-3"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Contact End -->
