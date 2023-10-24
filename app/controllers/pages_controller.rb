@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:filter]
+
   def index
     @page_title = "CBC Inmobiliaria"
-    @properties_sale = Property.where(sale_or_rent: "venta")
-    @properties_rent = Property.where(sale_or_rent: "renta")
+    @properties_sale = Property.where(sale_or_rent: "venta").limit(3)
+    @properties_rent = Property.where(sale_or_rent: "renta").limit(3)
   end
 
   def about
@@ -29,5 +31,17 @@ class PagesController < ApplicationController
     flash[:success] = "El correo se ha enviado correctamente."
     redirect_to contacto_path
   end
+
+  def properties
+    @page_title = "CBC Propiedades"
+    @properties = Property.all
+  end
   
+  def filter
+    @keyword = params[:keyword]
+    @property_type = params[:property_type]
+    @sale_or_rent = params[:sale_or_rent]
+    @properties = Property.filter(@keyword, @property_type, @sale_or_rent)
+    render partial: "pages/properties_list", locals: { properties: @properties }
+  end
 end

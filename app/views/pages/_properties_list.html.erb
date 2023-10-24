@@ -1,0 +1,19 @@
+
+<div id="properties_list" data-controller="search">
+  <h1 class="text-center my-4">Nuestras Propiedades</h1>
+  <!-- Search Start -->
+  <%= render 'pages/search' %>
+  <!-- Search End -->
+
+  <div class="container-fluid" style="width: 85%;">
+  <% if @properties.any? %>
+    <div class="row g-4">
+      <% @properties.each do |property| %>
+        <%= render 'pages/property', property: property %>
+      <% end %>
+    </div>
+  <% else %>
+    <h1 class="text-center my-4">No hay resultados...</h1>
+  <% end %>
+  </div>
+</div>
