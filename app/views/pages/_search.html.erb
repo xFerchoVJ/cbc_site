@@ -1,0 +1,29 @@
+<!-- Search Start -->
+<div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
+  <div class="container">
+    <%= form_with url: properties_filter_path, id: "search-form" do |form| %>
+      <div class="row g-2">
+        <div class="col-md-8">
+          <div class="row g-2">
+            <div class="col-md-4">
+              <%= form.text_field :keyword, class: "form-control border-0 py-3", data: { search_target: "keyword"}, placeholder: "Buscar...", value: @keyword || ""%>
+            </div>
+            <div class="col-md-4">
+              <%= form.select :property_type, options_for_select([['Tipo de Propiedad', ''] ] + Property.property_types.keys.map{ |key| [key.humanize, key] }, @property_type || ""), {}, class: "form-select border-0 py-3", data: { search_target: "propertyType" } %>
+            </div>
+            <div class="col-md-4">
+              <%= form.select :sale_or_rent, options_for_select([['Renta o Venta', ''] , ['Renta', 'renta'], ['Venta', 'venta']], @sale_or_rent || ""), {}, class: "form-select border-0 py-3", data: { search_target: "saleOrRent" } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <button class="btn btn-dark border-0 w-100 py-3" data-action="click->search#search">Filtrar</button>
+        </div>
+        <div class="col-md-2">
+          <%= link_to 'Quitar Filtros', plp_page_path, class: "btn btn-dark border-0 w-100 py-3"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- Search End -->
