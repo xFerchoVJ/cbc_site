@@ -65,11 +65,11 @@ Rails.application.configure do
   #Mailtrap config
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => '6aa7806b49e8df',
-    :password => '70d646afa0c6f5',
-    :address => 'sandbox.smtp.mailtrap.io',
-    :host => 'sandbox.smtp.mailtrap.io',
-    :port => 2525,
+    :user_name => Rails.application.credentials.dig(:mailtrap, :user_name),
+    :password => Rails.application.credentials.dig(:mailtrap, :password),
+    :address => Rails.application.credentials.dig(:mailtrap, :address),
+    :host => Rails.application.credentials.dig(:mailtrap, :host),
+    :port => Rails.application.credentials.dig(:mailtrap, :port),
     :authentication => "login",
     :enable_starttls_auto => true
   }
