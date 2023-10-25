@@ -37,6 +37,12 @@ class PagesController < ApplicationController
     @properties = Property.all
   end
   
+  def property
+    @page_title = "CBC Propiedad"
+    @property = Property.find(params[:id])
+  end
+  
+
   def filter
     @keyword = params[:keyword]
     @property_type = params[:property_type]
