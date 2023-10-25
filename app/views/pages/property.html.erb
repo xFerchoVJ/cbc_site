@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="owl-carousel pdp-carousel testimonial-carousel">
+        <% @property.images.each do |image| %>
+          <div class="item">
+            <%= image_tag image, class: "img-fluid" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="mt-2 d-none d-md-block">
+        <!-- Miniaturas de las imágenes -->
+        <div class="row d-flex align-items-center justify-content-center">
+          <% @property.images.each do |image| %>
+            <div class="col-md-2 mb-2">
+              <%= image_tag image, class: "img-fluid thumbnail" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <h1 class="text-primary">
+        <%= @property.name %>
+      </h1>
+      <p><strong>Dirección:</strong> <%= @property.direction %></p>
+      <p><strong>Precio:</strong> <%= number_to_currency(@property.price) %></p>
+      <p><strong>Metros cuadrados:</strong> <%= @property.square_meter %> m²</p>
+      <p><strong>Habitaciones:</strong> <%= @property.beds %></p>
+      <p><strong>Baños:</strong> <%= @property.bathrooms %></p>
+      <p><strong>Tipo de propiedad:</strong> <%= @property.property_type.humanize %></p>
+      <p><strong>En venta o alquiler:</strong> <%= @property.sale_or_rent.humanize %></p>
+      <!-- Formulario de agendar cita o mensaje de inicio de sesión -->
+      <h2 class="text-primary mt-4">Agendar Cita</h2>
+      <% if current_user %>
+        <%= render 'pages/form_appointment' %>
+      <% else %>
+        <p class="text-danger">Debes iniciar sesión para agendar una cita.</p>
+        <%= link_to "Iniciar Sesión", new_user_session_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <%= link_to "Volver a las Propiedades", plp_page_path, class: "btn btn-primary shadow mt-3 mx-auto w-50 w-md-25"%>
+  </div>
+</div>

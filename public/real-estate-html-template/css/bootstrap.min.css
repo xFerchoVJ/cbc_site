@@ -8108,6 +8108,9 @@ fieldset:disabled .btn {
   .text-md-center {
       text-align: center !important;
   }
+  .w-md-25{
+    width: 25% !important
+  }
 }
 @media (min-width: 992px) {
   .float-lg-start {
