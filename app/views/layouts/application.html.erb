@@ -2,7 +2,7 @@
 <html>
   <head>
     <title> 
-      Sitio - <%= current_page?(new_user_session_path) ? "CBC Inicia Sesión" : @page_title %>
+      Sitio - <%= current_page?(new_user_session_path) ? "CBC Inicia Sesión" : current_page?(new_user_registration_path) ? "CBC Registrate" : @page_title %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag asset_path('favicon/cbc_image.jpg') %>

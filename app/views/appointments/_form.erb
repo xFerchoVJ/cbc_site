@@ -1,0 +1,15 @@
+<div class="w-100 w-md-75">
+  <%= form_with url: appointments_path, method: :post do |form| %>
+    <div class="form-group">
+      <%= form.label :name, "Nombre" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= form.label :phone, "Teléfono" %>
+      <%= form.text_field :phone, class: "form-control" %>
+    </div>
+    <%= form.hidden_field :property_id, value: @property.id %>
+    <%= form.hidden_field :user_id, value: current_user.id%>
+    <%= form.submit "Agendar Cita", class: "btn btn-primary mt-2" %>
+  <% end %>
+</div>

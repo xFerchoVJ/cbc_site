@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       resources :properties
     end
   end
-  unauthenticated do
     root 'pages#index'
     get '/nosotros', to: "pages#about"
     get '/contacto', to: "pages#contact"
@@ -13,5 +12,5 @@ Rails.application.routes.draw do
     get '/propiedades/:id', to: "pages#property", as: :pdp_page
     post '/contact', to: "pages#send_contact_message", as: :mail_contact
     match '/properties/filter', to: 'pages#filter', via: [:get, :post], as: :properties_filter
-  end
+    resources :appointments, only: [:create]
 end
