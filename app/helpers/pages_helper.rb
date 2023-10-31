@@ -10,4 +10,15 @@ module PagesHelper
     end
     result
   end
+
+  def flash_class(key)
+    case key
+    when "success"
+      "alert-success"
+    when "error"
+      "alert-warning"
+    else
+      "alert-info" # Clase predeterminada para otros tipos de mensajes flash
+    end
+  end
 end
