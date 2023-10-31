@@ -14,26 +14,10 @@
           <i class='bx bxs-building-house nav_icon'></i> 
           <span class="nav_name">Propiedades</span> 
         <% end %>
-        <a href="#" class="nav_link"> 
+        <%= link_to admin_users_path, class:"nav_link #{"active" if current_page?(admin_users_path)}" do %>
           <i class='bx bx-user nav_icon'></i>
           <span class="nav_name">Users</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i  class='bx bx-message-square-detail nav_icon'></i> 
-          <span class="nav_name">Messages</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class='bx bx-bookmark nav_icon'></i> 
-          <span class="nav_name">Bookmark</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class='bx bx-folder nav_icon'></i> 
-          <span class="nav_name">Files</span> 
-        </a> 
-        <a href="#" class="nav_link"> 
-          <i class='bx bx-bar-chart-alt-2 nav_icon'></i> 
-          <span class="nav_name">Stats</span>
-        </a> 
+        <% end %>
       </div>
     </div> 
     <%= link_to destroy_user_session_path, class: "nav_link", data: { turbo_method: :delete } do %>

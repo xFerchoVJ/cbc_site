@@ -1,6 +1,6 @@
 class Admin::PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy ]
-  before_action :authenticated_admin!
+  include AdminAuthentication
   layout 'admin'
 
   # GET /admin/properties or /admin/properties.json
@@ -49,7 +49,7 @@ class Admin::PropertiesController < ApplicationController
           @property.images.where(id: imgs_ids_to_purge).purge
         end
 
-        format.html { redirect_to admin_properties_path, notice: "La propiedad fue editada correctamente." }
+        format.html { redirect_to admin_property_path(@property), notice: "La propiedad fue editada correctamente." }
         format.json { render :show, status: :ok, location: @property }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,12 +77,5 @@ class Admin::PropertiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def property_params
       params.require(:property).permit(:name, :direction, :price, :square_meter, :beds, :bathrooms, :property_type, :sale_or_rent, images: [])
-    end
-
-    def authenticated_admin!
-      unless user_signed_in? && current_user.admin?
-        flash[:alert] = "Acceso no autorizado."
-        redirect_to root_path
-      end
     end
 end

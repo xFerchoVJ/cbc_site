@@ -1,0 +1,19 @@
+<h1 class="text-center">Usuarios Registrados</h1>
+<div class="table-responsive">
+  <table class="table table-primary">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |users| %>
+        <tr>
+          <th><%= users.id %></th>
+          <th><%= users.email %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

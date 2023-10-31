@@ -37,6 +37,11 @@
         <strong>Tipo de la Propiedad:</strong>
         <%= property.property_type.capitalize %>
       </p>
+
+      <p class="fs-5 mb-4">
+        <strong>Citas para la Propiedad:</strong>
+        <%= property.appointments.count %>
+      </p>
             
       <div>
         <%= link_to "Editar esta Propiedad", edit_admin_property_path(@property), class:"btn btn-primary mb-2" %> |

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   authenticated :user, ->(user) { user.admin? } do
     namespace :admin do
       resources :properties
+      resources :users, only: [:index]
     end
   end
     root 'pages#index'
