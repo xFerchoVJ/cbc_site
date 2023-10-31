@@ -5,7 +5,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
   
   validates :email, uniqueness: true
-
+  has_many :appointments
   enum role: %i[client admin]
   
   after_initialize :set_default_role, if: :new_record?

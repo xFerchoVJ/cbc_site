@@ -200,7 +200,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #009472;
+  color: #061a73;
 }
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
@@ -8110,6 +8110,10 @@ fieldset:disabled .btn {
   }
   .w-md-25{
     width: 25% !important
+  }
+
+  .w-md-75{
+    width: 75% !important;
   }
 }
 @media (min-width: 992px) {

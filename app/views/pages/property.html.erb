@@ -1,4 +1,16 @@
 <div class="container mt-5">
+  <% if flash %>
+    <% flash.each do |key, value|%>
+      <div data-controller="notice">
+        <div class="alert <%= flash_class(key) %> d-flex align-items-center" role="alert"  id="notice">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div>
+            <p class="m-0 p-0 fs-4"><%= value  %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
   <div class="row">
     <div class="col-md-7">
       <div class="owl-carousel pdp-carousel testimonial-carousel">
@@ -30,10 +42,13 @@
       <p><strong>Baños:</strong> <%= @property.bathrooms %></p>
       <p><strong>Tipo de propiedad:</strong> <%= @property.property_type.humanize %></p>
       <p><strong>En venta o alquiler:</strong> <%= @property.sale_or_rent.humanize %></p>
-      <!-- Formulario de agendar cita o mensaje de inicio de sesión -->
       <h2 class="text-primary mt-4">Agendar Cita</h2>
       <% if current_user %>
-        <%= render 'pages/form_appointment' %>
+        <%unless Appointment.where(user_id: current_user.id, property_id: @property.id).empty?%>
+          <p class="text-danger">Ya tienes una cita agendada para esta propiedad.</p>
+        <%else%>
+          <%= render 'appointments/form', disabled_dates: @disabled_dates%>
+        <%end%>
       <% else %>
         <p class="text-danger">Debes iniciar sesión para agendar una cita.</p>
         <%= link_to "Iniciar Sesión", new_user_session_path, class: "btn btn-primary" %>

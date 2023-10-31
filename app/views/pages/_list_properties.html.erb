@@ -11,7 +11,7 @@
       <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
         <ul class="nav nav-pills d-inline-flex justify-content-end mb-5" role="tablist">
           <li class="nav-item me-2">
-            <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-1">En Venta</a>
+            <a class="btn btn-outline-primary active" data-bs-toggle="pill" href="#tab-1">En Venta</a>
           </li>
           <li>
             <a class="btn btn-outline-primary" data-bs-toggle="pill" href="#tab-2">En Renta</a>
@@ -27,9 +27,9 @@
               <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="property-item rounded overflow-hidden">
                   <div class="position-relative overflow-hidden">
-                    <a href="">
+                    <%= link_to pdp_page_path(property) do %>
                       <%= image_tag property.images[0], class: "img-fluid", data: { target: 'property-spinner.image' } %>
-                    </a>
+                    <% end %>
 
                     <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                       <%= property.sale_or_rent.capitalize %>
@@ -40,7 +40,7 @@
                   </div>
                   <div class="p-4 pb-0">
                     <h5 class="text-primary mb-3">$<%= property.price %></h5>
-                    <a class="d-block h5 mb-2" href=""><%= property.name %></a>
+                    <%= link_to property.name, pdp_page_path(property), class: "d-block h5 mb-2" %>
                     <p><i class="fa fa-map-marker-alt text-primary me-2"></i><%= property.direction %></p>
                   </div>
                   <div class="d-flex border-top">

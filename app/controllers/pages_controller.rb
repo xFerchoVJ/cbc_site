@@ -40,8 +40,14 @@ class PagesController < ApplicationController
   def property
     @page_title = "CBC Propiedad"
     @property = Property.find(params[:id])
+    @disabled_dates = get_disabled_dates
   end
   
+  def get_disabled_dates
+    occupied_dates = Appointment.pluck(:date)
+    formatted_occupied_dates = occupied_dates.map { |date| date.strftime("%Y-%m-%d") }
+    formatted_occupied_dates.to_json
+  end
 
   def filter
     @keyword = params[:keyword]

@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   has_many_attached :images
+  has_many :appointments
   enum property_type: [:casa, :terreno, :departamento, :bodega] 
   enum sale_or_rent: { venta: true, renta: false }
 

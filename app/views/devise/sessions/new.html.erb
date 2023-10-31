@@ -18,18 +18,18 @@
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="form-floating mb-3">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-            <%= f.label :email %>
+            <%= f.label :email, "Correo Electronico" %>
           </div>
 
           <div class="form-floating mb-3">
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-            <%= f.label :password %>
+            <%= f.label :password, "Contraseña" %>
           </div>
 
           <% if devise_mapping.rememberable? %>
             <div class="mb-3">
               <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+              <%= f.label :remember_me, "Recuérdame" %>
             </div>
           <% end %>
 

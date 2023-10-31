@@ -2,7 +2,7 @@
 <html>
   <head>
     <title> 
-      Sitio - <%= current_page?(new_user_session_path) ? "CBC Inicia Sesión" : @page_title %>
+      Sitio - <%= current_page?(new_user_session_path) ? "CBC Inicia Sesión" : current_page?(new_user_registration_path) ? "CBC Registrate" : @page_title %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag asset_path('favicon/cbc_image.jpg') %>
@@ -29,6 +29,7 @@
 
       <!-- Template Stylesheet -->
       <link href="/real-estate-html-template/css/style.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <% end %>
   </head>
 
@@ -46,7 +47,8 @@
     <script src="/real-estate-html-template/lib/easing/easing.min.js"></script>
     <script src="/real-estate-html-template/lib/waypoints/waypoints.min.js"></script>
     <script src="/real-estate-html-template/lib/owlcarousel/owl.carousel.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
     <!-- Template Javascript -->
     <script src="/real-estate-html-template/js/main.js"></script>
   </body>
