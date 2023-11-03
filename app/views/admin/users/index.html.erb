@@ -1,19 +1,22 @@
-<h1 class="text-center">Usuarios Registrados</h1>
-<div class="table-responsive">
-  <table class="table table-primary">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |users| %>
+<div class="container mt-4">
+  <h1 class="text-center fs-4 mb-4">Usuarios Registrados</h1>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-dark">
         <tr>
-          <th><%= users.id %></th>
-          <th><%= users.email %></th>
+          <th scope="col">#</th>
+          <th scope="col">Email</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <th><%= user.id %></th>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -7,16 +7,27 @@ export default class extends Controller {
   }
 
   initFlatpickr() {
-
     const dates = JSON.parse(this.element.dataset.dates);
-    console.log(dates);
+    const today = new Date();
+    const minDate = today.toISOString().split('T')[0]; // Convierte la fecha actual a formato YYYY-MM-DD
+    const alert = document.querySelector('#warning-dates');
+
     flatpickr(this.element, {
-      enableTime: false,
-      minDate: 'today',
+      enableTime: true,
+      minDate,
       onClose: (selectedDates, dateStr, instance) => {
+        dates.forEach(date => { 
+          const dateObject = new Date(date)
+          if (selectedDates[0].toLocaleString() == dateObject.toLocaleString()) {
+            alert.classList.remove('d-none')
+            setTimeout(() => {
+              alert.classList.add('d-none')
+            }, 4500);
+            return
+          }
+        })
         this.element.value = dateStr;
       },
-      disable: dates,
       locale: {
         weekdays: {
           shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],

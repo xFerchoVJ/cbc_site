@@ -32,28 +32,11 @@ class PagesController < ApplicationController
     redirect_to contacto_path
   end
 
-  def properties
-    @page_title = "CBC Propiedades"
-    @properties = Property.all
-  end
-  
-  def property
-    @page_title = "CBC Propiedad"
-    @property = Property.find(params[:id])
-    @disabled_dates = get_disabled_dates
-  end
-  
-  def get_disabled_dates
-    occupied_dates = Appointment.pluck(:date)
-    formatted_occupied_dates = occupied_dates.map { |date| date.strftime("%Y-%m-%d") }
-    formatted_occupied_dates.to_json
-  end
-
   def filter
     @keyword = params[:keyword]
     @property_type = params[:property_type]
     @sale_or_rent = params[:sale_or_rent]
     @properties = Property.filter(@keyword, @property_type, @sale_or_rent)
-    render partial: "pages/properties_list", locals: { properties: @properties }
+    render partial: "properties/properties_list", locals: { properties: @properties }
   end
 end

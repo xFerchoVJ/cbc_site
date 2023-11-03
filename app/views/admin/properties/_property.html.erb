@@ -3,65 +3,49 @@
 
   <div class="row">
     <div class="col-md-6">
-      <p class="fs-5 mb-4">
-        <strong>Nombre de la Propiedad:</strong>
-        <%= property.name %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Dirección de la Propiedad:</strong>
-        <%= property.direction %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Precio de la Propiedad:</strong>
-        <%= property.price %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Metros cuadrados de la Propiedad:</strong>
-        <%= property.square_meter %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Recámaras de la Propiedad:</strong>
-        <%= property.beds %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Baños de la Propiedad:</strong>
-        <%= property.bathrooms %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Tipo de la Propiedad:</strong>
-        <%= property.property_type.capitalize %>
-      </p>
-
-      <p class="fs-5 mb-4">
-        <strong>Citas para la Propiedad:</strong>
-        <%= property.appointments.count %>
-      </p>
-            
-      <div>
-        <%= link_to "Editar esta Propiedad", edit_admin_property_path(@property), class:"btn btn-primary mb-2" %> |
-        <%= link_to "Regresar a las Propiedades Registradas", admin_properties_path, class:"btn btn-primary mb-2" %>
-
-        <%= button_to "Eliminar esta Propiedad",admin_property_path(@property), method: :delete, class:"btn btn-danger mb-2" %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Información de la Propiedad</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Nombre de la Propiedad:</strong> <%= property.name %></li>
+            <li class="list-group-item"><strong>Dirección de la Propiedad:</strong> <%= property.direction %></li>
+            <li class="list-group-item"><strong>Precio de la Propiedad:</strong> <%= number_to_currency(property.price, unit: "$", separator: ".", delimiter: ",") %></li>
+            <li class="list-group-item"><strong>Metros cuadrados de la Propiedad:</strong> <%= property.square_meter %> m²</li>
+            <li class="list-group-item"><strong>Recámaras de la Propiedad:</strong> <%= property.beds %></li>
+            <li class="list-group-item"><strong>Baños de la Propiedad:</strong> <%= property.bathrooms %></li>
+            <li class="list-group-item"><strong>Tipo de la Propiedad:</strong> <%= property.property_type.capitalize %></li>
+            <li class="list-group-item">
+              <strong>Citas para la Propiedad:</strong> 
+              <%= property.appointments.count  %>
+            </li>
+            <% if property.appointments.count > 0 %>
+              <li class="list-group-item">
+                <%= link_to "Ver Citas", admin_appointment_path(@property), class: "btn btn-outline-primary" %>
+              </li>
+            <% end %>
+          </ul>
+          <div class="mt-3">
+            <%= link_to "Editar esta Propiedad", edit_admin_property_path(@property), class: "btn btn-primary mb-2 w-100" %>
+            <%= link_to "Regresar a las Propiedades Registradas", admin_properties_path, class: "btn btn-secondary mb-2 w-100" %>
+            <%= button_to "Eliminar esta Propiedad", admin_property_path(@property), method: :delete, class: "btn btn-danger w-100" %>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="d-flex align-items-center justify-content-center flex-column">
-        <h2 class="fs-4 mb-4">Imágenes de la Propiedad</h2>
-        <div class="row">
-          <% property.images.each do |img| %>
-            <div class="col-12 col-md-6 mb-3">
-              <div class="card">
-                <%= image_tag img, class: "card-img-top img-fluid" %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Imágenes de la Propiedad</h5>
+          <div class="row">
+            <% property.images.each do |img| %>
+              <div class="col-12 col-md-6 mb-3">
+                <div class="card">
+                  <%= image_tag img, class: "card-img-top img-fluid" %>
+                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

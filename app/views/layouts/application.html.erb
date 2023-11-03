@@ -9,7 +9,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>
-    <% if controller_name != "properties" %>
+    <% unless current_user&.admin? %>
       
       <!-- Google Web Fonts -->
       <link rel="preconnect" href="https://fonts.googleapis.com">

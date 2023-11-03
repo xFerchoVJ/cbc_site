@@ -6,7 +6,7 @@ class Admin::PropertiesController < ApplicationController
   # GET /admin/properties or /admin/properties.json
   def index
     @page_title = "CBC Propiedades"
-    @properties = Property.all
+    @properties = Property.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /admin/properties/1 or /admin/properties/1.json
