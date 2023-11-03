@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h1 class="fs-4 mb-4">Citas de la Propiedad: <%= @property.name %></h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nombre de la Persona</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Correo Electrónico</th>
+          <th scope="col">Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @appointments.each do |appointment| %>
+          <tr>
+            <td><%= appointment.name%></td>
+            <td><%= appointment.phone %></td>
+            <td><%= appointment.email %></td>
+            <td><%= appointment.date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to "Ver los Detalles de la Propiedad", admin_property_path(@property), class: "btn btn-secondary" %>
+  </div>
+  <div class="mt-3">
+    <%= link_to "Ver Todas las Citas", admin_appointments_path, class: "btn btn-primary" %>
+  </div>
+</div>

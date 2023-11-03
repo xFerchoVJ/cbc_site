@@ -1,4 +1,3 @@
-
 <div id="properties_list" data-controller="search">
   <h1 class="text-center my-4">Nuestras Propiedades</h1>
   <!-- Search Start -->
@@ -6,14 +5,12 @@
   <!-- Search End -->
 
   <div class="container-fluid" style="width: 85%;">
-  <% if @properties.any? %>
     <div class="row g-4">
       <% @properties.each do |property| %>
-        <%= render 'pages/property', property: property %>
+        <%= render 'properties/property', property: property %>
       <% end %>
     </div>
-  <% else %>
-    <h1 class="text-center my-4">No hay resultados...</h1>
-  <% end %>
   </div>
 </div>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

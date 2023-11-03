@@ -1,0 +1,32 @@
+<!-- app/views/admin/appointments/index.html.erb -->
+
+<div class="container mt-4">
+  <h1 class="fs-4 mb-4">Todas las Citas</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Nombre de la Propiedad</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @appointments.each do |appointment| %>
+          <tr>
+            <td><%= link_to appointment.property.name, admin_property_path(appointment.property) %></td>
+            <td><%= appointment.date %></td>
+            <td>
+              <%= link_to "Ver Detalles", admin_appointment_path(appointment.property), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to "Regresar al Panel de Administración", admin_properties_path, class: "btn btn-secondary" %>
+  </div>
+</div>

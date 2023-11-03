@@ -4,13 +4,13 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :properties
       resources :users, only: [:index]
+      resources :appointments, only: [:index, :show]
     end
   end
     root 'pages#index'
     get '/nosotros', to: "pages#about"
     get '/contacto', to: "pages#contact"
-    get '/propiedades', to: "pages#properties", as: :plp_page
-    get '/propiedades/:id', to: "pages#property", as: :pdp_page
+    resources :properties, only: [:index, :show]
     post '/contact', to: "pages#send_contact_message", as: :mail_contact
     match '/properties/filter', to: 'pages#filter', via: [:get, :post], as: :properties_filter
     resources :appointments, only: [:create]

@@ -4,23 +4,23 @@ class AppointmentsController < ApplicationController
   def create
     if params[:date].blank?
       flash[:error] = "Todos los campos son obligatorios."
-      redirect_to pdp_page_path(params[:property_id])
+      redirect_to property_path(params[:property_id])
       return
     end
     date = Date.parse(params[:date])
     existing_appointments = Appointment.find_by(date: date)
     if existing_appointments
       flash[:error] = "Ya existe una cita para esta fecha."
-      redirect_to pdp_page_path(params[:property_id])
+      redirect_to property_path(params[:property_id])
       return
     end
     appointment = Appointment.create(appointment_params)
     if appointment.save
       flash[:success] = "Tu cita se ha registrado correctamente."
-      redirect_to pdp_page_path(appointment.property_id)
+      redirect_to property_path(appointment.property_id)
     else
       flash[:error] = "Tu cita no se ha registrado correctamente."
-      redirect_to pdp_page_path(appointment.property_id)
+      redirect_to property_path(appointment.property_id)
     end
   end
   

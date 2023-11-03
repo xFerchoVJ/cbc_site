@@ -16,8 +16,13 @@
         <% end %>
         <%= link_to admin_users_path, class:"nav_link #{"active" if current_page?(admin_users_path)}" do %>
           <i class='bx bx-user nav_icon'></i>
-          <span class="nav_name">Users</span> 
+          <span class="nav_name">Usuarios</span> 
         <% end %>
+        <%= link_to admin_appointments_path, class:"nav_link #{"active" if current_page?(admin_appointments_path)}" do %>
+          <i class='bx bxs-bookmarks nav_icon'></i>
+          <span class="nav_name">Citas</span> 
+        <% end %>
+        
       </div>
     </div> 
     <%= link_to destroy_user_session_path, class: "nav_link", data: { turbo_method: :delete } do %>
