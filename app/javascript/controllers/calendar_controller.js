@@ -22,7 +22,7 @@ export default class extends Controller {
             alert.classList.remove('d-none')
             setTimeout(() => {
               alert.classList.add('d-none')
-            }, 4500);
+            }, 6500);
             return
           }
         })

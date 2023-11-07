@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
       flash[:success] = "Tu cita se ha registrado correctamente."
       redirect_to property_path(appointment.property_id)
     else
-      flash[:error] = "Tu cita no se ha registrado correctamente."
+      flash[:error] = "Tu cita no se ha registrado correctamente. #{appointment.errors.messages[:phone].join(', ') if appointment.errors.messages[:phone]}"
       redirect_to property_path(appointment.property_id)
     end
   end

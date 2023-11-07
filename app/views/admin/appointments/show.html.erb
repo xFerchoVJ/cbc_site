@@ -9,6 +9,7 @@
           <th scope="col">Teléfono</th>
           <th scope="col">Correo Electrónico</th>
           <th scope="col">Fecha</th>
+          <th scope="col">Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,11 @@
             <td><%= appointment.phone %></td>
             <td><%= appointment.email %></td>
             <td><%= appointment.date %></td>
+            <% if appointment.completed %>
+              <td><%= link_to "Marcar como Pendiente", admin_pending_appointment_path(appointment), class: "btn btn-warning" %></td>
+            <% else %>
+              <td><%= link_to "Marcar como Completada", admin_complete_appointment_path(appointment), class: "btn btn-success" %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
