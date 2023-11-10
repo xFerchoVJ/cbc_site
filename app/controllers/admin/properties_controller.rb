@@ -28,6 +28,7 @@ class Admin::PropertiesController < ApplicationController
   # POST /admin/properties or /admin/properties.json
   def create
     @property = Property.new(property_params)
+    return unless @property.images.attached?
 
     respond_to do |format|
       if @property.save

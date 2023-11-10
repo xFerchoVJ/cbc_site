@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       resources :properties
       resources :users, only: [:index]
       resources :appointments, only: [:index, :show]
+      get '/appointment/completed/:id', to: "appointments#mark_as_completed", as: :complete_appointment
+      get '/appointment/pending/:id', to: "appointments#mark_as_pending", as: :pending_appointment
     end
   end
     root 'pages#index'
