@@ -1,24 +1,35 @@
-# README
+# SITIO PARA LA INMOBILIARIA CBC
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 3.2.0
+* Rails version: 7
+* Database: SQLite
 
-Things you may want to cover:
+# Pasos para instalar y correr el proyecto:
 
-* Ruby version
+**Se agrego un archivo Dockerfile para que no sea necesario instalar Ruby**
 
-* System dependencies
+### Comando para construir la imagen desde dockerfile: 
 
-* Configuration
+```sh
+docker build -t cbc_site .
+```
 
-* Database creation
+### Ejecutar la imagen y crear contenedor
+```sh
+docker run -d -p 3000:3000 cbc_site
+```
 
-* Database initialization
+### Correr las migraciones de rails
+```sh
+docker exec -it [ID DEL CONTENEDOR] rails db:migrate
+```
 
-* How to run the test suite
+### Correr los seeds de rails
+```sh
+docker exec -it [ID DEL CONTENEDOR] rails db:seed
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Abrir en el navegador localhost:3000
 
-* Deployment instructions
 
-* ...
+
