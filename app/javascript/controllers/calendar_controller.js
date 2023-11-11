@@ -1,7 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="calendar"
 export default class extends Controller {
-
   connect() {
     this.initFlatpickr()
   }
@@ -11,7 +10,7 @@ export default class extends Controller {
     const today = new Date();
     const minDate = today.toISOString().split('T')[0]; // Convierte la fecha actual a formato YYYY-MM-DD
     const alert = document.querySelector('#warning-dates');
-
+    const button = document.querySelector("#input-button");
     flatpickr(this.element, {
       enableTime: true,
       minDate,
@@ -20,10 +19,13 @@ export default class extends Controller {
           const dateObject = new Date(date)
           if (selectedDates[0].toLocaleString() == dateObject.toLocaleString()) {
             alert.classList.remove('d-none')
+            button.disabled = true
             setTimeout(() => {
               alert.classList.add('d-none')
             }, 6500);
-            return
+          }else{
+            alert.classList.add('d-none')
+            button.disabled = false
           }
         })
         this.element.value = dateStr;

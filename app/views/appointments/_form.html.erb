@@ -17,6 +17,6 @@
     </div>
     <%= form.hidden_field :property_id, value: @property.id %>
     <%= form.hidden_field :user_id, value: current_user.id%>
-    <%= form.submit "Agendar Cita", class: "btn btn-primary mt-2" %>
+    <%= form.submit "Agendar Cita", class: "btn btn-primary mt-2", id: "input-button" %>
   <% end %>
 </div>
