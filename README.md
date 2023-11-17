@@ -31,5 +31,9 @@ docker exec -it [ID DEL CONTENEDOR] rails db:seed
 
 ### Abrir en el navegador localhost:3000
 
+## Cuenta de Admin de prueba:
+**correo**: fernandovj.dev@gmail.com
+**password**: habbito332yt
+
 
 
