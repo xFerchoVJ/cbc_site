@@ -2,9 +2,14 @@ class Admin::AppointmentsController < ApplicationController
 
   def index
     @page_title = "CBC Citas"
-    @appointments = Appointment.order(completed: :asc)
+    
+    # Calcula la fecha de hace un mes
+    one_month_ago = 1.month.ago
+    
+    # Filtra las citas que fueron creadas en el último mes
+    @appointments = Appointment.where('created_at >= ?', one_month_ago).order(completed: :asc)
   end
-
+  
   def show
     @page_title = "CBC Cita"
     property_id = params[:id]

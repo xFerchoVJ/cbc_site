@@ -47,7 +47,11 @@ class Admin::PropertiesController < ApplicationController
       if @property.update(property_params)
         if params[:property][:image_ids].present?
           imgs_ids_to_purge = params[:property][:image_ids].map(&:to_i)
-          @property.images.where(id: imgs_ids_to_purge).purge
+          begin
+            @property.images.where(id: imgs_ids_to_purge).purge
+          rescue => exception
+            puts "Error en el borrado de la imagen: #{exception}"
+          end
         end
 
         format.html { redirect_to admin_property_path(@property), notice: "La propiedad fue editada correctamente." }

@@ -74,7 +74,7 @@
 
     <div class="mb-3">
       <%= form.label :images, "Imagenes de la Propiedad", class: "form-label" %>
-      <%= form.file_field :images, multiple: true , class: "form-control" %>
+      <%= form.file_field :images, multiple: true , class: "form-control", direct_upload: true %>
     </div>
     <div class="mb-3">
       <%= form.submit "#{property.new_record? ? "Crear Propiedad" : "Editar Propiedad"}", class: "btn btn-primary" %>

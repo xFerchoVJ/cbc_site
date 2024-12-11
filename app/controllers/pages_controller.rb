@@ -20,7 +20,12 @@ class PagesController < ApplicationController
     @email = params[:contact_form][:email]
     @subject = params[:contact_form][:subject]
     @message = params[:contact_form][:message]
-    
+
+    if @name.empty? || @email.empty? || @subject.empty? || @message.empty?
+      flash[:error] = "Todos los campos son obligatorios"
+      return
+    end
+       
     # Envía el correo y obtén el resultado de la entrega
     contact = NotifierMailer.contact_message(@name, @email, @subject, @message).deliver_later
     if contact

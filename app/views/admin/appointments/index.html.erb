@@ -1,6 +1,16 @@
 <div class="container mt-4">
   <h1 class="fs-4 mb-4">Todas las Citas</h1>
 
+  <!-- Indicador gráfico de citas en el último mes -->
+  <div class="mb-4">
+    <% last_month_count = @appointments.size %>
+    <% last_month_label = last_month_count == 1 ? 'cita' : 'citas' %>
+    <div class="alert alert-info">
+      Hay <strong><%= last_month_count %></strong> nuevas <%= last_month_label %> agendadas en el último mes.
+    </div>
+    <canvas id="appointmentsChart"></canvas>
+  </div>
+
   <div class="table-responsive">
     <table class="table table-striped">
       <thead class="thead-dark">
@@ -27,4 +37,37 @@
   <div class="mt-3">
     <%= link_to "Regresar al Panel de Administración", admin_properties_path, class: "btn btn-secondary" %>
   </div>
+
+  <!-- Script para inicializar el gráfico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var ctx = document.getElementById('appointmentsChart').getContext('2d');
+      var appointmentsChart = new Chart(ctx, {
+        type: 'bar', // Cambia 'bar' a 'line' para un gráfico de línea
+        data: {
+          labels: ['Citas en el Último Mes'],
+          datasets: [{
+            label: 'Citas',
+            data: [<%= last_month_count %>],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+    });
+  </script>
 </div>
